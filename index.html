@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Komlalebu</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="icon" href="https://s3.amazonaws.com/blog.komlalebu.com/Komla_icon.PNG" type="image/icon type">
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://kit.fontawesome.com/2e3d481c46.js"></script>
+
+	  <!--HTML hover--------------------------------------------->	
+	  <style type="text/css">
+           a {text-decoration: none; color:red}
+           a:hover {text-decoration: underline;}
+      </style>
+
+	  <!--JavaScript to change image--------------------------------------------->
+	<script type = "text/JavaScript">
+	function changeImage1()
+	{
+		var img = document.getElementById("image");
+		img.src = img2.src;
+		return false;
+	}
+		function changeImage2()
+	{
+		var img = document.getElementById("image");
+		img.src="https://s3.amazonaws.com/blog.komlalebu.com/KomlaSad.gif";
+		return false;
+	}
+	
+	<!--Added conditioon to avoid multiple calls--------------------------------------------->
+		var lastCalled = 0;
+		function changeImage3()
+	{	
+		
+		if(lastCalled < 20){
+		var img = document.getElementById("image");
+		img.src = img1.src;
+		lastCalled++;
+		return lastCalled;
+		
+		} 
+		
+	}
+	
+		<!--Separate Komlaprocess function--------------------------------------------->
+			function changeImage4()
+	{	
+		
+
+		var img = document.getElementById("image");
+		img.src = img3.src;
+		return false;
+		
+	}
+	
+
+	
+
+	</script>
+
+  
+  <!--CountAPI--------------------------------------------->
+  <script>                                                                          
+    function cb(response) {
+    document.getElementById('visits').innerText = response.value;
+    }
+  
+  </script>
+
+   <script async src="https://api.countapi.xyz/hit/blog.komlalebu.com/visits?callback=cb"></script> 
+  
+   <!------------------------------API Gateway call / Lambda -------------------------------->
+    <script>
+        // define the callAPI function that takes a first name and last name as parameters
+        var callAPI = (firstName,lastName)=>{
+            // instantiate a headers object
+            var myHeaders = new Headers();
+            // add content type header to object
+            myHeaders.append("Content-Type", "application/json");
+            // using built in JSON utility package turn object to string and store in a variable
+            var raw = JSON.stringify({"firstName":firstName,"lastName":lastName});
+            // create a JSON object with parameters for API call and store in a variable
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            // make API call with parameters and use promises to get response
+            fetch("https://dbksgyfdxl.execute-api.ap-south-1.amazonaws.com/Dev", requestOptions)
+            .then(response => response.text())
+            .then(result => alert(JSON.parse(result).body))
+            .catch(error => console.log('error', error));
+        }
+    </script>
+
+
+	
+</head>
+<body onscroll="changeImage3()">
+
+<div class="resume">
+   <div class="resume_left">
+     <div class="resume_profile">
+       <img id="image" src="https://s3.amazonaws.com/blog.komlalebu.com/Komlalebu_logo_animated.gif" alt="profile_pic">
+	    </div>
+
+	 			 <div class="resume_QR">
+			   <img id="image" src="https://s3.amazonaws.com/blog.komlalebu.com/KomlaQR.png" alt="profile_pic">
+			    </div>
+
+	
+	    
+
+     <div class="resume_content">
+       <div class="resume_item resume_info">
+         <div class="title">
+           <p class="bold">Jayanjan Mukherjee</p>
+           <p class="regular">AWS Certified professional || Web Developer || DB2 Mainframe support</p>
+         </div>
+         <ul>
+           <li>
+             <div class="icon">
+               <i class="fas fa-map-signs"></i>
+             </div>
+             <div class="data">
+               26 Pune, Maharashtra <br /> India
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fas fa-mobile-alt"></i>
+             </div>
+             <div class="data">
+               
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fas fa-envelope"></i>
+             </div>
+             <div class="data">
+               <a href="https://jicoing@gmail.com/" style="color:#0bb5f4" onclick="changeImage1()">jicoing@gmail.com</a>
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fab fa-weebly"></i>
+             </div>
+             <div class="data">
+				<a href="https://www.komlalebu.com/" style="color:#0bb5f4" onclick="changeImage1()">www.komlalebu.com</a>
+               
+             </div>
+           </li>
+		   <li>
+             <div class="icon">
+               <i class="fab fa-aws"></i>
+             </div>
+             <div class="data">
+             <a href="https://www.youracclaim.com/users/jayanjan-mukherjee.25943bff/badges">
+				<div clsss="btn">
+					<button type="button" onclick="changeImage4()">AWS Certificates</button>
+					
+				</div></a>
+			 </div>
+           </li>
+		   <li>
+             <div class="icon">
+               <i class="fas fa-user-check"></i>
+             </div><div class="data">Visitor count:<div id="visits">...
+             </div>
+           </li>		   
+         </ul>
+       </div>
+	  <button class="accordion"><p class="bold">Details</p></button>
+       <div class="panel">
+       <div class="resume_item resume_skills">
+         <div class="title">
+           <p class="bold">skill's</p>
+         </div>
+         <ul>
+           <li>
+             <div class="skill_name">
+               HTML
+             </div>
+             <div class="skill_progress">
+               <span style="width: 20%;"></span>
+             </div>
+             <div class="skill_per">20%</div>
+           </li>
+           <li>
+             <div class="skill_name">
+               CSS
+             </div>
+             <div class="skill_progress">
+               <span style="width: 15%;"></span>
+             </div>
+             <div class="skill_per">15%</div>
+           </li>
+           <li>
+             <div class="skill_name">
+               AWS
+             </div>
+             <div class="skill_progress">
+               <span style="width: 60%;"></span>
+             </div>
+             <div class="skill_per">60%</div>
+           </li>
+           <li>
+             <div class="skill_name">
+               DB2
+             </div>
+             <div class="skill_progress">
+               <span style="width: 60%;"></span>
+             </div>
+             <div class="skill_per">60%</div>
+           </li>
+           <li>
+             <div class="skill_name">
+               MF
+             </div>
+             <div class="skill_progress">
+               <span style="width: 40%;"></span>
+             </div>
+             <div class="skill_per">40%</div>
+           </li>
+         </ul>
+       </div>
+       <div class="resume_item resume_social">
+         <div class="title">
+           <p class="bold">Social</p>
+         </div>
+         <ul>
+           <li>
+             <div class="icon">
+               <i class="fab fa-facebook-square"></i>
+             </div>
+			 <div class="data">
+             <a href="https://www.facebook.com/jayanjan">
+				<div clsss="btn">
+				<button type="button" onclick="changeImage4()">Facebook</button>
+				</div></a>
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fab fa-twitter-square"></i>
+             </div>
+			 <div class="data">
+             <a href="https://twitter.com/jicoing">
+				<div clsss="btn">
+				<button type="button" onclick="changeImage4()">Twitter</button>
+				</div></a>
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fab fa-youtube"></i>
+             </div>
+			 <div class="data">
+             <a href="https://www.youtube.com/watch?v=UzWfC-_vr3I&t=468s">
+				<div clsss="btn">
+				<button type="button" onclick="changeImage4()">Youtube</button>
+				</div></a>
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fab fa-instagram"></i>
+             </div>
+			 <div class="data">
+             <a href="https://www.instagram.com/jicoing/">
+				<div clsss="btn">
+				<button type="button" onclick="changeImage4()">Instagram</button>
+				</div></a>
+             </div>
+           </li>
+		   <li>
+             <div class="icon">
+               <i class="fab fa-linkedin"></i>
+             </div>
+			 <div class="data">
+             <a href="https://www.linkedin.com/in/jayanjan-mukherjee-9779647a/">
+				<div clsss="btn">
+				<button type="button" onclick="changeImage4()">LinkedIn</button>
+				</div></a>
+             </div>
+           </li>
+           <li>
+            <div class="icon">
+              <i class="fas fa-align-justify"></i>
+            </div>
+			 <div class="data">
+             <a href="https://dev.to/jicoing/clouds-and-cages-mcc">
+				<div clsss="btn">
+				<button type="button" onclick="changeImage4()">Dev.to</button>
+				</div></a>
+             </div>
+
+			 
+          </li>
+		 </ul>
+		 
+		      
+				
+			
+
+
+       </div>
+     </div>
+  </div>
+ </div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+  
+  <div class="resume_right">
+    <div class="resume_item resume_about">
+        <div class="title">
+           <p class="bold">About </p>
+         </div>
+        <p>After 5+ years of application support in DB2/Mainframe projects, I am transitioning to web development and AWS platforms. I've always been interested in this field and decided it is the right time for me to make the move. I am self taught in this field and currently self-employed, also got 2* AWS certified recently. This website is using Amazon web services such as S3, DynamoDB, Lambda,  API Gateway, Cloudfront distribution, Route53, ACM for TLS/SSL certification and has been developed as a hobby project. Please feel free to provide your feedback at the bottom of the page and do check out the blog on how this site was made at <a href="https://dev.to/jicoing/clouds-and-cages-mcc" style="color: #0bb5f4" onclick="changeImage1()">Dev.to</a>. #CloudResume. </p>
+    </div>
+	
+
+<div>
+  <img src="https://s3.amazonaws.com/blog.komlalebu.com/aws-certified-solutions-architect-associate.png"/><img src="https://s3.amazonaws.com/blog.komlalebu.com/aws-certified-developer-associate.png"/>
+</div>
+
+    
+
+    <div class="resume_item resume_work">
+        <div class="title">
+           <p class="bold"><a href="https://s3.amazonaws.com/blog.komlalebu.com/Experience+letter.pdf" style="color: #0bb5f4" onclick="changeImage1()">Work Experience</a></p>
+         </div>
+         
+        <ul>
+            <li>
+                <div class="date">April 2018 - August 2020</div> 
+                <div class="info">
+                     <p class="semi-bold">Cognizant</p> 
+                  <p>DB2/Mainframe support for US based Healthcare client. Supported 1200+ tickets ranging from client membership data issues in DB2 to MF support.</p>
+                </div>
+            </li>
+		</ul>
+		<ul>	
+            <li>
+				<div class="date">February 2017 – April 2018</div>
+				<div class="info">
+                     <p class="semi-bold">Cognizant</p> 
+                  <p>Mainframe support for US based Automobile client. LOAD/UNLOAD/RUNSTATS/ISPF/SPUFI/JCL</p>
+                </div>
+            </li>
+		</ul>
+		<ul>	
+            <li>
+				<div class="date">December 2014 – February 2017</div>
+				<div class="info">
+                     <p class="semi-bold">Cognizant</p> 
+                  <p>Worked as a DB2 Developer and handled admin activities for US based automobile client.</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="resume_item resume_education">
+      <div class="title">
+           <p class="bold">Skills</p>
+         </div>
+      <ul>
+            <li>
+                <div class="semi-bold">Mainframe/DB2</div> 
+                <div class="info">
+                     <p class="date">Skillset</p> 
+                  <p>DB2, ISPF, SPUFI, TSO, JCL Utilities, COBOL.</p>
+                </div>
+            </li>
+		</ul>
+		<ul>	
+            <li>
+              <div class="semi-bold">AWS/Web Development</div>
+              <div class="info">
+                     <p class="date">Skillset</p> 
+                  <p>EC2, S3, Lambda, Cloudfront, HTML, JS, Python, CodeCommit, CodeDeploy, CodePipeline.</p>
+                </div>
+               
+    
+
+
+
+
+
+			</li>	
+        </ul>
+    
+        <div class="resume_item resume_education">
+          <div class="title">
+               <p class="bold">Education</p>
+             </div>
+          <ul>
+                <li>
+                    <div class="semi-bold">West Bengal University of Technology,2013</div> 
+                    <div class="info">
+                         <p class="date">Siliguri Institute of Technology, Siliguri</p> 
+                      <p>I possess a B.Tech degree in Electronics & Instrumentation from <a href="https://en.wikipedia.org/wiki/Maulana_Abul_Kalam_Azad_University_of_Technology" style="color: #0bb5f4">WBUT.</a></p>
+					  <p></p>
+                    </div>
+                </li>
+			</ul>
+			<ul>	
+                <li>
+                  <div class="semi-bold">Council for the Indian School Certificates Examination, 2007</div>
+                  <div class="info">
+                         <p class="date">Julien Day School, Kalyani</p> 
+                      <p><p>I did my schooling with Science from <a href="https://cisce.org/" style="color: #0bb5f4">CISCE.</a></p></p>
+                    </div>
+
+                    <div class="date"> </div>
+                    <div class="info">
+                           <p class="semi-bold"> </p> 
+                        <p> </p>
+                      </div>
+                   
+                 </li>	
+            </ul> 
+			
+			
+	 <!--Gap---------------------------------------------------------------------------> 				
+					<div class="gap_base">
+					   <p class="bold"></p>
+					   <p></p>
+					</div>
+					
+					
+					
+			<div align="center">
+                    <!--Feedbacks---------------------------------------------------------------------------> 
+                    <form>
+                      <!-- set button onClick method to call function we defined passing input values as parameters -->
+                      <button type="button" style="color: #555555" onclick="callAPI(document.getElementById('visits').innerText,'liked!');changeImage1()">Like</button>
+                    </form>
+	 <!--Gap---------------------------------------------------------------------------> 				
+					<div class="gap">
+					   <p></p>
+					</div>
+			
+                    <form>
+                      <!-- set button onClick method to call function we defined passing input values as parameters -->
+                      <button type="button" style="color: #555555" onclick="callAPI(document.getElementById('visits').innerText,'disliked!');changeImage2()">Dislike</button>
+                    </form>
+			</div>			
+    
+    
+    
+
+
+            <div align="center">
+			  <h1>                                                   </h1>
+              <h2>                                                   </h2>
+              <p>© 2020 - Jayanjan Mukherjee</p>
+            </div>
+        
+
+	<!------Preloading moving head image---------------->
+				<script type = "text/JavaScript">
+				var img1 = new Image();
+				img1.src="https://s3.amazonaws.com/blog.komlalebu.com/Komlaprocess.gif";
+				
+				</script>
+				
+
+				
+				<script type = "text/JavaScript">
+				var img2 = new Image();
+				img2.src="https://s3.amazonaws.com/blog.komlalebu.com/KomlaHappy.gif";
+				</script>	
+
+
+				
+				<script type = "text/JavaScript">
+				var img3 = new Image();
+				img3.src="https://s3.amazonaws.com/blog.komlalebu.com/Komlaprocess.gif";
+				
+				</script>				
+
+
+</body>
+
+
+</html>
+
+
