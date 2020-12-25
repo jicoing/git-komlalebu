@@ -101,7 +101,16 @@ button:hover:after {
 }
 
 
+.resume  .resume_left .resume_event img {
+  width: 10%;
+  height: auto;
+  margin-top: -225px;
+  margin-left: 5%;
+  position: absolute
 
+
+
+}
 
 
 .resume .resume_left .resume_profile img {
@@ -123,6 +132,10 @@ button:hover:after {
 
 
 }
+
+
+
+
 
 
 .resume .resume_left .resume_profile {
@@ -314,6 +327,18 @@ body {
   margin-left: 70px;
   position: relative
 }
+
+.resume  .resume_left .resume_event img {
+  width: 5%;
+  height: auto;
+  margin-top: -505px;
+  margin-left: 0;
+  position: absolute
+
+
+
+}
+
 
 .resume .resume_left .resume_content {
   padding: 0 25px;
