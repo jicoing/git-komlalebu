@@ -578,9 +578,11 @@ for (i = 0; i < acc.length; i++) {
 				if (today.getDate() === 25 && today.getMonth() === 11) {
 				  changeEventImage6();
 				} else if(today.getDate() === 1 && today.getMonth() === 0){ //Compare today with January 1st
-				  changeEventImage7();
-				} else if(today.getHours() >= 18 && today.getHours() <= 23){
 				  changeEventImage5();
+				} else if(today.getHours() >= 18 && today.getHours() <= 23){
+				  changeEventImage7();
+				}else if(today.getHours() >= 0 && today.getHours() <= 6){
+				  changeEventImage7();
 				};
 				
 				</script>	
