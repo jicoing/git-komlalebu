@@ -22,11 +22,13 @@ body {
   cursor: pointer;
   padding: 0px;
   width: 100%;
-  border: none;
+  border: 2px solid #e1e1e1;
   text-align: center;
   outline: none;
   font-size: 0px;
   transition: 0.4s;
+
+  
 }
 
 .active, .accordion:hover {
