@@ -45,7 +45,7 @@ body {
 
 .accordion:after {
   content: "\25BC"; 
-  font-size: 12px;
+  font-size: 8px;
   color: #777;
 
 
@@ -57,7 +57,7 @@ body {
 
 .active:after {
   content: "\25B2"; 
-    font-size: 12px;
+    font-size: 8px;
 	  color: #777;
 }
 
