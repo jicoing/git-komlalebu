@@ -1,29 +1,11 @@
-#!/bin/bash
+FROM nikolaik/python-nodejs:python3.8-nodejs12-alpine
 
-set -e
+ENV SAM_CLI_TELEMETRY 0
 
-cd $INPUT_WORKING_DIRECTORY
+RUN apk --update --no-cache add jq curl bash gcc git make musl-dev libc6-compat tar && \
+  curl https://dl.google.com/go/go1.14.6.linux-amd64.tar.gz | tar -xvzf - -C /usr/local 
+ENV GOROOT /usr/local/go
+ENV PATH ${PATH}:${GOROOT}/bin
+COPY entrypoint.sh /entrypoint.sh
 
-# Respect AWS_DEFAULT_REGION if specified
-[ -n "$AWS_DEFAULT_REGION" ] || export AWS_DEFAULT_REGION=ap-south-1
-
-# Respect AWS_DEFAULT_OUTPUT if specified
-[ -n "$AWS_DEFAULT_OUTPUT" ] || export AWS_DEFAULT_OUTPUT=json
-
-ARGS=()
-
-(( -z "$PREFIX" )) && args+=( "--prefix $PREFIX")
-
-ARGS+=( "--s3-bucket $INPUT_BUCKET" )
-ARGS+=( "--template-file $INPUT_TEMPLATE_FILE" )
-ARGS+=( "--output-template-file $INPUT_OUTPUT_TEMPLATE_FILE" )
-
-CMD="sam package ${ARGS[@]}"
-
-output=$( sh -c "$CMD" )
-
-# Preserve output for consumption by downstream actions
-echo "$output" > "${HOME}/${GITHUB_ACTION}.${AWS_DEFAULT_OUTPUT}"
-
-# Write output to STDOUT
-echo "$output"
+ENTRYPOINT ["/entrypoint.sh"]
