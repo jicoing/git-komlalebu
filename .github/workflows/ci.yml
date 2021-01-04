@@ -39,7 +39,7 @@ jobs:
         output_template_file: $.yaml
         working_directory: ./.aws-sam/build
     - name: Push Template to S3
-      uses: actions/aws/cli@master
+      uses: actions/aws/aws-cli@master
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
