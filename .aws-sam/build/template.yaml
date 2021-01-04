@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'sam-app
+
+  Sample SAM Template for sam-app
+
+  '
+Globals:
+  Function:
+    Timeout: 60
+  Api:
+    Cors:
+      AllowMethods: '''OPTIONS,POST,GET'''
+      AllowHeaders: '''Content-Type'''
+      AllowOrigin: '''*'''
+Resources:
+  KomlalebuFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: KomlalebuFunction
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Policies:
+      - AmazonDynamoDBFullAccess
+      Events:
+        KomlalebuAPI:
+          Type: Api
+          Properties:
+            Path: /
+            Method: post
+  komlalebuTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+      TableName: komlalebuTable
+Outputs:
+  KomlalebuApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
+  KomlalebuFunction:
+    Description: Komlalebu Function ARN
+    Value:
+      Fn::GetAtt:
+      - KomlalebuFunction
+      - Arn
+  KomlalebuIamRole:
+    Description: Implicit IAM Role created for Hello World function
+    Value:
+      Fn::GetAtt:
+      - KomlalebuFunctionRole
+      - Arn
