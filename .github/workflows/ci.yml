@@ -1,59 +1,16 @@
-name: CI
-on:
-  push:
-    branches:
-    - master
-    tags:
-      - '*'
-
-jobs:
-  checkout:
-    name: Checkout
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Prepare Environment
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12'
-    - name: Install
-      run: npm ci
-    - name: Test
-      run: npm run test -- --coverage
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    - name: Build
-      run: npm run build
-    - name: SAM Package
-      uses: ./.github/actions/sam/package
-      env:
-        SAM_CLI_TELEMETRY: 0
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      with:
-        prefix: $/$
-        bucket: $ 
-        template_file: template.yaml
-        output_template_file: $.yaml
-        working_directory: ./.aws-sam/build
-    - name: Push Template to S3
-      uses: actions/aws/aws-cli@master
-      env:
-        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      with:
-        args: >-
-          s3 cp ./.aws-sam/build/$.yaml
-          s3://blog.komlalebu.com/template/template.yaml
-    - name: Publish
-      if: startsWith(github.ref, 'refs/tags')
-      uses: ./.github/actions/sam/publish
-      env:
-        SAM_CLI_TELEMETRY: 0
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      with:
-        TEMPLATE: ./.aws-sam/build/$.yaml
+- name: sam build1
+  uses: TractorZoom/sam-cli-action@master
+  with:
+    sam_command: "build"
+  env:
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+- name: sam deploy
+  uses: TractorZoom/sam-cli-action@master
+  with:
+    sam_command: "deploy"
+  env:
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
