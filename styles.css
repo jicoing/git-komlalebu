@@ -108,12 +108,11 @@ button:hover:after {
 
 
 .resume  .resume_left .resume_event img {
-  width: 5%;
+  width: 10%;
   height: auto;
-  margin-top: -80px;
-  margin-left: 90%;
+  margin-top: -162px;
+  margin-left: 5%;
   position: absolute
-
 
 
 }
@@ -339,10 +338,10 @@ body {
 }
 
 .resume  .resume_left .resume_event img {
-  width: 10%;
+  width: 5%;
   height: auto;
-  margin-top: 450px;
-  margin-left: 900px;
+  margin-top: -505px;
+  margin-left: 0;
   position: absolute
 
 
