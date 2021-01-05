@@ -276,12 +276,16 @@ button:hover:after {
 }
 
 body {
-  background: #fff;
+
   font-size: 14px;
   line-height: 22px;
   color: #555555;
+  background-image: url("https://s3.amazonaws.com/blog.komlalebu.com/Komlabackground.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 120%;
+  background-position: -5px 1000px; 
 }
-
 
 
 
