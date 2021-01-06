@@ -16,7 +16,7 @@ Globals:
       AllowOrigin: "'*'"
 
 Resources:
-  KomlalebuFunction:
+  KomlalebuFunction1:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: komla_function/
@@ -26,12 +26,12 @@ Resources:
       # Give DynamoDB Full Access to your Lambda Function
       - AmazonDynamoDBFullAccess
       Events:
-        KomlalebuAPI:
+        KomlalebuAPI1:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /
             Method: post
-  komlalebuTable:
+  komlalebuTable1:
     Type: AWS::Serverless::SimpleTable
     Properties:
       PrimaryKey:
