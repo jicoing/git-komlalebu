@@ -1,25 +1,9 @@
-name: "AWS SAM CLI Github Action"
-description: "Run AWS SAM commands via Github Actions"
-author: "tractorzoom"
+name: 'AWS SAM Deploy'
+description: 'Deploys AWS SAM Stack'
+author: 'Jan Alfred Richter <falnyr@gmail.com>'
 branding:
-  icon: "terminal"
-  color: "blue"
-inputs:
-  sam_version:
-    description: "AWS SAM version to install."
-    default: "latest"
-  sam_command:
-    description: "AWS SAM subcommand to execute."
-    required: true
-  actions_comment:
-    description: "Whether or not to comment on pull requests."
-    default: false
-  github_package_registry_token:
-    description: "Github package registry token to install dependencies outside of npm"
-    default: ""
-  directory:
-    description: "directory in which to execute sam command."
-    default: "./"
+  icon: 'upload-cloud'
+  color: 'orange'
 runs:
-  using: "docker"
-  image: "./Dockerfile"
+  using: 'docker'
+  image: 'Dockerfile'

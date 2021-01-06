@@ -1,88 +1,85 @@
 #!/bin/bash
 
-set -u
+set -e
 
-function parseInputs(){
-	# Required inputs
-	if [ "${INPUT_SAM_COMMAND}" == "" ]; then
-		echo "Input sam_subcommand cannot be empty"
-		exit 1
-	fi
-}
+if [[ -z "$TEMPLATE" ]]; then
+    echo "Empty template specified. Looking for template.yaml..."
 
-function installAwsSam(){
-	echo "Install aws-sam-cli ${INPUT_SAM_VERSION}"
-	if [ "${INPUT_SAM_VERSION}" == "latest" ]; then
-		pip install aws-sam-cli >/dev/null 2>&1
-		if [ "${?}" -ne 0 ]; then
-			echo "Failed to install aws-sam-cli ${INPUT_SAM_VERSION}"
-		else
-			echo "Successful install aws-sam-cli ${INPUT_SAM_VERSION}"
-		fi
-	else
-		pip install aws-sam-cli==${INPUT_SAM_VERSION} >/dev/null 2>&1
-		if [ "${?}" -ne 0 ]; then
-			echo "Failed to install aws-sam-cli ${INPUT_SAM_VERSION}"
-		else
-			echo "Successful install aws-sam-cli ${INPUT_SAM_VERSION}"
-		fi
-	fi
-}
+    if [[ ! -f "template.yaml" ]]; then
+        echo template.yaml not found
+        exit 1
+    fi
 
-function runSam(){
-	if [ "${INPUT_GITHUB_PACKAGE_REGISTRY_TOKEN}" == "" ]; then
-		echo "//npm.pkg.github.com/:_authToken=${INPUT_GITHUB_PACKAGE_REGISTRY_TOKEN}" > ~/.npmrc
-	fi
+    TEMPLATE="template.yaml"
+fi
 
-	echo "Run sam ${INPUT_SAM_COMMAND}"
-	output=$(sam ${INPUT_SAM_COMMAND} 2>&1)
-	exitCode=${?}
-	echo "${output}"
+if [[ -z "$AWS_STACK_NAME" ]]; then
+    echo AWS Stack Name invalid
+    exit 1
+fi
 
-	commentStatus="Failed"
-	if [ "${exitCode}" == "0" ]; then
-		commentStatus="Success"
-	fi
+if [[ -z "$AWS_ACCESS_KEY_ID" ]]; then
+    echo AWS Access Key ID invalid
+    exit 1
+fi
 
-	if [ "$GITHUB_EVENT_NAME" == "pull_request" ] && [ "${INPUT_ACTIONS_COMMENT}" == "true" ]; then
-		commentWrapper="#### \`sam ${INPUT_SAM_COMMAND}\` ${commentStatus}
-<details><summary>Show Output</summary>
-\`\`\`
-${output}
-\`\`\`
-</details>
-*Workflow: \`${GITHUB_WORKFLOW}\`, Action: \`${GITHUB_ACTION}\`*"
+if [[ -z "$AWS_SECRET_ACCESS_KEY" ]]; then
+    echo AWS Secret Access Key invalid
+    exit 1
+fi
 
-		payload=$(echo "${commentWrapper}" | jq -R --slurp '{body: .}')
-		commentsURL=$(cat ${GITHUB_EVENT_PATH} | jq -r .pull_request.comments_url)
+if [[ -z "$AWS_REGION" ]]; then
+    echo AWS Region invalid
+    exit 1
+fi
 
-		echo "${payload}" | curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" --header "Content-Type: application/json" --data @- "${commentsURL}" > /dev/null
-	fi
+if [[ -z "$AWS_DEPLOY_BUCKET" ]]; then
+    echo AWS Deploy Bucket invalid
+    exit 1
+fi
 
-	if [ "${exitCode}" == "1" ]; then
-		exit 1
-	fi
-}
+if [[ ! -z "$AWS_BUCKET_PREFIX" ]]; then
+    AWS_BUCKET_PREFIX="--s3-prefix ${AWS_BUCKET_PREFIX}"
+fi
 
-function gotoDirectory(){
-	if [ -z "${INPUT_DIRECTORY}" ]; then
-		return 1
-	fi
+if [[ $FORCE_UPLOAD == true ]]; then
+    FORCE_UPLOAD="--force-upload"
+fi
 
-	if [ ! -d "${INPUT_DIRECTORY}" ]; then
-		echo "Directory ${INPUT_DIRECTORY} does not exists."
-		exit 127
-	fi
+if [[ $NO_FAIL_EMPTY_CHANGESET == true ]]; then
+    NO_FAIL_EMPTY_CHANGESET="--no-fail-on-empty-changeset"
+fi
 
-	echo "cd ${INPUT_DIRECTORY}"
-	cd $INPUT_DIRECTORY
-}
+if [[ $USE_JSON == true ]]; then
+    USE_JSON="--use-json"
+fi
 
-function main(){
-	parseInputs
-	installAwsSam
-	gotoDirectory
-	runSam
-}
+if [[ -z "$CAPABILITIES" ]]; then
+    CAPABILITIES="--capabilities CAPABILITY_IAM"
+else
+    CAPABILITIES="--capabilities $CAPABILITIES"
+fi
 
-main
+if [[ ! -z "$PARAMETER_OVERRIDES" ]]; then
+    PARAMETER_OVERRIDES="--parameter-overrides $PARAMETER_OVERRIDES"
+fi
+
+if [[ ! -z "$TAGS" ]]; then
+    TAGS="--tags $TAGS"
+fi
+
+mkdir -p ~/.aws
+touch ~/.aws/credentials
+touch ~/.aws/config
+
+echo "[default]
+aws_access_key_id = $AWS_ACCESS_KEY_ID
+aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
+region = $AWS_REGION" > ~/.aws/credentials
+
+echo "[default]
+output = text
+region = $AWS_REGION" > ~/.aws/config
+
+aws cloudformation package --template-file $TEMPLATE --output-template-file serverless-output.yaml --s3-bucket $AWS_DEPLOY_BUCKET $AWS_BUCKET_PREFIX $FORCE_UPLOAD $USE_JSON
+aws cloudformation deploy --template-file serverless-output.yaml --stack-name $AWS_STACK_NAME $CAPABILITIES $PARAMETER_OVERRIDES $TAGS $NO_FAIL_EMPTY_CHANGESET
