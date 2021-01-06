@@ -12,7 +12,7 @@ jobs:
     - uses: falnyr/aws-sam-deploy-action@v1.2.1
       env:
         TEMPLATE: 'template.yaml'
-        AWS_STACK_NAME: aws-sam-komlalebu-git
+        AWS_STACK_NAME: aws-sam-komlalebu
         AWS_REGION: 'ap-south-1'
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
