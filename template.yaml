@@ -53,6 +53,4 @@ Outputs:
   KomlalebuFunction:
     Description: "Komlalebu Function ARN"
     Value: !GetAtt KomlalebuFunction.Arn
-  KomlalebuIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt KomlalebuFunctionRole.Arn
+
