@@ -110,8 +110,17 @@
   </script>
 
 
-   <script async src="https://api.countapi.xyz/hit/blog.komlalebu.com/visits?callback=cb"></script> 
-  
+   <script async src="https://api.countapi.xyz/hit/blog.komlalebu.com/visits?callback=cb"></script>
+
+
+   
+
+
+
+
+
+
+	
    <!------------------------------API Gateway call / Lambda -------------------------------->
     <script>
         // define the callAPI function that takes a vistor count and visitor response as parameters
@@ -138,9 +147,74 @@
     </script>
 
 
+
+    <!------------------------------API for Likes count-------------------------------->  
+   
+ 
+    <script>
+
+      var callLikesAPI = ()=>{
+                  // instantiate a headers object
+                  var myHeaders = new Headers();
+                  // add content type header to object
+                  myHeaders.append("Content-Type", "application/json");
+                  // using built in JSON utility package turn object to string and store in a variable
+      
+                  // create a JSON object with parameters for API call and store in a variable
+                  var requestOptions = {
+                      method: 'POST',
+                      headers: myHeaders,
+                      redirect: 'follow'
+                  };
+           fetch("https://dbksgyfdxl.execute-api.ap-south-1.amazonaws.com/Dev/",requestOptions)
+           .then (response => response.text())
+           .then(result => {
+             
+            document.getElementById('visitlike').innerText = (JSON.parse(result).body)          
+          
+           })
+          }
+         
+          </script>
+      
+            <!-----------------------------API for Likes count--------------------------------->  
+      
+    <!------------------------------API for dislikes count-------------------------------->  
+   
+ 
+    <script>
+
+      var calldislikesAPI = ()=>{
+                  // instantiate a headers object
+                  var myHeaders = new Headers();
+                  // add content type header to object
+                  myHeaders.append("Content-Type", "application/json");
+                  // using built in JSON utility package turn object to string and store in a variable
+      
+                  // create a JSON object with parameters for API call and store in a variable
+                  var requestOptions = {
+                      method: 'POST',
+                      headers: myHeaders,
+                      redirect: 'follow'
+                  };
+           fetch("https://xauvrs1gi6.execute-api.ap-south-1.amazonaws.com/dev",requestOptions)
+           .then (response => response.text())
+           .then(result => {
+             
+            document.getElementById('visitdislike').innerText = (JSON.parse(result).body)          
+          
+           })
+          }
+         
+          </script>
+      
+            <!-----------------------------API for dislikes count--------------------------------->  
+      
+               
+            
 	
 </head>
-<body onscroll="changeImage3()" onload = "callAPI(document.getElementById('visits').innerText,'')">
+<body onscroll="changeImage3()" onload = "callAPI(document.getElementById('visits').innerText,'');callLikesAPI();calldislikesAPI()">
 
 <div class="resume">
    <div class="resume_left">
@@ -214,12 +288,29 @@
 				</div></a>
 			 </div>
            </li>
-		   <li>
+		   
              <div class="icon">
                <i class="fas fa-user-check"></i>
-             </div><div class="data">Visitor count:<div id="visits">...
-             </div>
-           </li>		   
+             </div><div class="data">Visitor stats:
+           
+           
+
+           <table style="width:100%">
+              <tr>
+                  <th>Count</th> <th>Likes</th> <th>Dislikes</th>
+                    <tr>
+                      <td><div id="visits">...</div></td>
+
+                      <td><div id="visitlike" style="color:#0d9939">...</div></td>
+                      <td><div id="visitdislike" style="color:#FF0000">...</div></td>
+                    </tr>
+                  
+              </tr>
+
+           </table>
+       
+           
+
          </ul>
        </div>
 	  <button class="accordion"><p class="bold">Detail</p></button>
@@ -527,7 +618,7 @@ for (i = 0; i < acc.length; i++) {
                     <!--Feedbacks---------------------------------------------------------------------------> 
                     <form>
                       <!-- set button onClick method to call function we defined passing input values as parameters -->
-                      <button type="button" style="color: #555555" onclick="callAPI(document.getElementById('visits').innerText,'liked!');changeImage1();alert('Feedback received. Thanks!')">Like</button>
+                      <button type="button" style="color: #555555" onclick="callAPI(document.getElementById('visits').innerText,'YES');changeImage1();alert('Feedback received. Thanks!')">Like</button>
                     </form>
 	 <!--Gap---------------------------------------------------------------------------> 				
 					<div class="gap">
@@ -536,7 +627,7 @@ for (i = 0; i < acc.length; i++) {
 			
                     <form>
                       <!-- set button onClick method to call function we defined passing input values as parameters -->
-                      <button type="button" style="color: #555555" onclick="callAPI(document.getElementById('visits').innerText,'disliked!');changeImage2();alert('Feedback received. Thanks!')">Dislike</button>
+                      <button type="button" style="color: #555555" onclick="callAPI(document.getElementById('visits').innerText,'NO');changeImage2();alert('Feedback received. Thanks!')">Dislike</button>
 					 
                     </form>
 			</div>			

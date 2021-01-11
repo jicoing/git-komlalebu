@@ -261,7 +261,10 @@ button:hover:after {
   background: #555555;
 }
 
-
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 
 
 
@@ -581,7 +584,11 @@ button:hover:after {
  transition: .7s;
 }
 
-
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  
+}
 
 }
 
