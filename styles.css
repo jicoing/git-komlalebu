@@ -226,12 +226,13 @@ button:hover:after {
 
 
 .resume .resume_right .bold {
-  color: ##0bb5f4;
+  color: #555555;
 }
 
 .resume .resume_right .resume_work ul,
 .resume .resume_right .resume_education ul {
   padding-left: 25px 25px;
+  padding-bottom: 5px;
   overflow: hidden;
 }
 
