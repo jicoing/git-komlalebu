@@ -210,11 +210,7 @@ button:hover:after {
   width: 100%;
   background: #b1eaff; 
   padding: 25px 25px;
-  background-image: url("https://s3.amazonaws.com/blog.komlalebu.com/Komlabackground.png");
-  background-repeat: repeat-x;
-  background-size: cover;
-  background-size:15%;
-  background-position: bottom left; 
+
   
 }
 
@@ -462,11 +458,6 @@ body {
   width: 100%;
   background: #b1eaff; 
   padding: 25px;
-  background-image: url("https://s3.amazonaws.com/blog.komlalebu.com/Komlabackground.png");
-  background-repeat: repeat-x;
-  background-size: cover;
-  background-size:10%;
-  background-position: bottom left; 
 }
 
 .resume .resume_right .bold {
