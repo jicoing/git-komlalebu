@@ -127,7 +127,8 @@ button:hover:after {
   height: auto;
   margin-left: 70%;
   margin-top: 95px;	
-  position: absolute
+  position: absolute;
+  display: none
 
 
 
@@ -336,7 +337,8 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  position: relative
+  position: relative;
+  display:none
 }
 
 .resume  .resume_left .resume_event img {
