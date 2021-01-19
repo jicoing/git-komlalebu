@@ -377,7 +377,7 @@ body {
 
 .resume .resume_item {
   padding: 25px 0;
-  border-bottom: 0px solid #b1eaff;
+  border-bottom: 2px solid #b1eaff;
 }
 
 .resume .resume_left .resume_item:last-child,
@@ -500,7 +500,6 @@ body {
   border-radius: 50%;
   border: 2px solid #0bb5f4;
 }
-
 
 
 .resume .resume_right .resume_hobby ul {
