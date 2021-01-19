@@ -11,12 +11,6 @@ body {
   font-size: 14px;
   line-height: 22px;
   color: #555555;
-  background-image: url("https://s3.amazonaws.com/blog.komlalebu.com/Komlabackground.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-size: 100%;
-  background-position: 50px 112px 
-
 }
 
 
@@ -216,6 +210,12 @@ button:hover:after {
   width: 100%;
   background: #b1eaff; 
   padding: 25px 25px;
+  background-image: url("https://s3.amazonaws.com/blog.komlalebu.com/Komlabackground.png");
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-size:15%;
+  background-position: bottom left; 
+  
 }
 
 
@@ -288,11 +288,6 @@ body {
   font-size: 14px;
   line-height: 22px;
   color: #555555;
-  background-image: url("https://s3.amazonaws.com/blog.komlalebu.com/Komlabackground.png"),url("https://s3.amazonaws.com/blog.komlalebu.com/Komlabackground.png");
-  background-repeat: no-repeat , repeat-x;
-  background-size: cover;
-  background-size: 20%, 30%;
-  background-position: top right, bottom left;  
   zoom: 100%;
   
 }
@@ -314,7 +309,7 @@ body {
   width: 100%;
   height: auto;
   display: flex;
-  margin: 60px auto;
+  margin: 0px auto;
   
 }
 
@@ -385,7 +380,7 @@ body {
 
 .resume .resume_item {
   padding: 25px 0;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #b1eaff;
 }
 
 .resume .resume_left .resume_item:last-child,
@@ -465,8 +460,13 @@ body {
 
 .resume .resume_right {
   width: 100%;
-  background: #fff; 
+  background: #b1eaff; 
   padding: 25px;
+  background-image: url("https://s3.amazonaws.com/blog.komlalebu.com/Komlabackground.png");
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-size:10%;
+  background-position: bottom left; 
 }
 
 .resume .resume_right .bold {
