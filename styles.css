@@ -281,6 +281,8 @@ table, th, td {
  
 }
 
+
+
 body {
 
   font-size: 14px;
@@ -289,6 +291,7 @@ body {
   zoom: 100%;
   
 }
+
 
 
 
@@ -303,17 +306,21 @@ body {
   font-size: 16px;
 }
 
-.resume {
-  width: 100%;
-  height: auto;
+.resume, html, body {
+  height: 100%;
   display: flex;
-  margin: 0px auto;
+  
+  
   
 }
 
 .resume .resume_left {
-  width: 400px;
+  width: 20%;
   background: #e1e1e1;
+  float: left;
+  overflow: auto;
+  overflow-x: hidden;
+
 }
 
 .resume .resume_left .resume_profile {
@@ -458,9 +465,11 @@ body {
 }
 
 .resume .resume_right {
-  width: 100%;
+  width: 80%;
   background: #b1eaff; 
   padding: 25px;
+  float: left;
+  overflow: auto;
 }
 
 .resume .resume_right .bold {

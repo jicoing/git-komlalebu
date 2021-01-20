@@ -214,10 +214,10 @@
             
 	
 </head>
-<body onscroll="changeImage3()" onload = "callAPI(document.getElementById('visits').innerText,'');callLikesAPI();calldislikesAPI()">
+<body  onscroll="changeImage3()" onload = "callAPI(document.getElementById('visits').innerText,'');callLikesAPI();calldislikesAPI()">
 
 <div class="resume">
-   <div class="resume_left">
+   <div class="resume_left" onscroll="changeImage3()">
      <div class="resume_profile">
        <img id="image" src="https://s3.amazonaws.com/blog.komlalebu.com/Komladefault.png" alt="profile_pic">
 	    </div>
@@ -313,7 +313,7 @@
 
          </ul>
        </div>
-	  <button class="accordion" id="redirect"><p class="bold">Detail</p></button>
+	  <button class="accordion" ><p class="bold">Detail</p></button>
        <div class="panel">
        <div class="resume_item resume_skills">
          <div class="title">
@@ -450,7 +450,7 @@
        </div>
      </div>
         
-	            <button class="accordion" ><p class="bold">Content</p></button>
+	            <button class="accordion" id="redirect"><p class="bold">Content</p></button>
 				<div class="panel">
 				<div class="data">	
 				<p><a href="https://dev.to/jicoing/1-certification-5hep" style="color:#0bb5f4">1.  Certification</a></p>
@@ -498,7 +498,7 @@ for (i = 0; i < acc.length; i++) {
 </script>
 
   
-  <div class="resume_right">
+  <div class="resume_right" >
     <div class="resume_item resume_about">
         <div class="title">
           <div align="right">
