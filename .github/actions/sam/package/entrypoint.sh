@@ -40,12 +40,12 @@ EOF
 # Sync using our dedicated profile and suppress verbose messages.
 # All other flags are optional via the `args:` directive.
 sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
-              --profile s3-sync-action \
+              --profile git-komlalebu \
               --no-progress \
               ${ENDPOINT_APPEND} $*"
 
 # Invalidates the cloudfront cache after S3 bucket sync.
-sh -c "aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths "/*" profile s3-sync-action"
+sh -c "aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths "/*" --profile git-komlalebu"
 
 # Clear out credentials after we're done.
 # We need to re-run `aws configure` with bogus input instead of
