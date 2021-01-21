@@ -26,7 +26,7 @@ Uploads the website source code to my S3 bucket and invalidates the Cloudfront c
                     runs-on: ubuntu-latest
                     steps:
                     - uses: actions/checkout@master
-                    - uses: jakejarvis/s3-sync-action@master
+                    - uses: ./.github/actions/sam/package
                       with:
                         args: --acl public-read --follow-symlinks  --exclude '.git*/*' 
                       env:
