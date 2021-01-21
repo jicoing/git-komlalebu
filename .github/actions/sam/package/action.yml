@@ -1,6 +1,6 @@
-name: "S3 Sync"
-description: "Sync a directory to an AWS S3 repository"
-author: jakejarvis
+name: "Website upload via S3 Sync"
+description: "Sync a directory to an AWS S3 repository which hosts a website"
+author: jicoing
 runs:
   using: docker
   image: Dockerfile
