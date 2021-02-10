@@ -210,11 +210,41 @@
       
             <!-----------------------------API for dislikes count--------------------------------->  
       
-               
+
+    <!------------------------------API for comments-------------------------------->  
+   
+ 
+    <script>
+
+      var callcommentsAPI = ()=>{
+                  // instantiate a headers object
+                  var myHeaders = new Headers();
+                  // add content type header to object
+                  myHeaders.append("Content-Type", "application/json");
+                  // using built in JSON utility package turn object to string and store in a variable
+      
+                  // create a JSON object with parameters for API call and store in a variable
+                  var requestOptions = {
+                      method: 'POST',
+                      headers: myHeaders,
+                      redirect: 'follow'
+                  };
+           fetch("https://f1j3uhbb6k.execute-api.ap-south-1.amazonaws.com/dev",requestOptions)
+           .then (response => response.text())
+           .then(result => {
+             
+            document.getElementById('visitcomments').innerText = (JSON.parse(result).body)          
+          
+           })
+          }
+         
+          </script>
+      
+            <!-----------------------------API for comments---------------------------------> 
             
 	
 </head>
-<body  onscroll="changeImage3()" onload = "callAPI(document.getElementById('visits').innerText,'');callLikesAPI();calldislikesAPI()">
+<body  onscroll="changeImage3()" onload = "callAPI(document.getElementById('visits').innerText,'');callLikesAPI();calldislikesAPI();callcommentsAPI()">
 
 <div class="resume">
    <div class="resume_left" onscroll="changeImage3()">
@@ -304,10 +334,19 @@
                       <td><div id="visitlike">...</div></td>
                       <td><div id="visitdislike">...</div></td>
                     </tr>
+                  </tr>
                   
-              </tr>
+              
 
            </table>
+
+
+
+                  
+
+
+
+
        
            
 
@@ -484,11 +523,13 @@
 
           <form action="https://www.komlalebu.com">
             <textarea id="myTextBox" cols="50" rows="5" >
-            Leave a message...
+            Leave a comment...
             </textarea>
             <br />
             <input type="submit"  onclick="callAPI(document.getElementById('visits').innerText,'commented: ' + document.getElementById('myTextBox').value)"/>
             </form>
+
+            <div id="visitcomments">...</div>
           
 
 
