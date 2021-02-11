@@ -276,6 +276,19 @@
           </script>
       
             <!-----------------------------API for comments---------------------------------> 
+
+            <!-----------------------------Form delay---------------------------------> 
+            <script>
+              function submitForm() {
+                  document.getElementById("customForm").submit()
+                  
+              }
+          
+              function delay() {
+                  setTimeout(submitForm, 2000); 
+              }
+          </script>
+          <!-----------------------------Form delay---------------------------------> 
             
 	
 </head>
@@ -557,11 +570,12 @@
         
         <div class="bold">comment</div>
         <div class="title"></div>
-          <form action="https://www.komlalebu.com">
+          <form action="https://www.komlalebu.com" id="customForm">
             <textarea id="myTextBox" cols="50" rows="5" maxlength="100" placeholder="Leave a comment..."></textarea>
             <br />
-            <input type="submit"  onclick="callcommentsdeleteAPI()"/>
-            </form>
+          </form>
+            <button style="width: 70px; height: 30px; font-size: 14px;" id="submit"  onclick="callcommentsdeleteAPI();delay()">Submit</button>
+
 
             <div id="visitcomments">...</div>
             
