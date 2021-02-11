@@ -232,9 +232,11 @@
            fetch("https://426a51hbk2.execute-api.ap-south-1.amazonaws.com/dev",requestOptions)
            .then (response => response.text())
            .then(result => {
-             
+
+            setTimeout(function() { 
             callAPI(document.getElementById('visits').innerText,'commented: ' + document.getElementById('myTextBox').value) 
-          
+          }, 2000)
+
            })
            
           }
