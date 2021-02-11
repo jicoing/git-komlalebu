@@ -211,7 +211,40 @@
             <!-----------------------------API for dislikes count--------------------------------->  
       
 
-    <!------------------------------API for comments-------------------------------->  
+    <!------------------------------API for comments delete-------------------------------->  
+   
+ 
+    <script>
+
+      var callcommentsdeleteAPI = ()=>{
+                  // instantiate a headers object
+                  var myHeaders = new Headers();
+                  // add content type header to object
+                  myHeaders.append("Content-Type", "application/json");
+                  // using built in JSON utility package turn object to string and store in a variable
+      
+                  // create a JSON object with parameters for API call and store in a variable
+                  var requestOptions = {
+                      method: 'POST',
+                      headers: myHeaders,
+                      redirect: 'follow'
+                  };
+           fetch("https://426a51hbk2.execute-api.ap-south-1.amazonaws.com/dev",requestOptions)
+           .then (response => response.text())
+           .then(result => {
+             
+            callAPI(document.getElementById('visits').innerText,'commented: ' + document.getElementById('myTextBox').value) 
+          
+           })
+           
+          }
+         
+          </script>
+      
+            <!-----------------------------API for comments delete---------------------------------> 
+
+
+                <!------------------------------API for comments-------------------------------->  
    
  
     <script>
@@ -520,16 +553,19 @@
 				</div>
 				<div class="title"></div>
         
-
+        <div class="bold">comment</div>
+        <div class="title"></div>
           <form action="https://www.komlalebu.com">
-            <textarea id="myTextBox" cols="50" rows="5" maxlength="100">
-            Leave a comment...
+            <textarea id="myTextBox" cols="50" rows="5" maxlength="100" placeholder="Leave a comment...">
+            
             </textarea>
             <br />
-            <input type="submit"  onclick="callAPI(document.getElementById('visits').innerText,'commented: ' + document.getElementById('myTextBox').value)"/>
+            <input type="submit"  onclick="callcommentsdeleteAPI()"/>
             </form>
 
             <div id="visitcomments">...</div>
+            
+         
           
 
 
