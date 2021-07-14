@@ -1,6 +1,6 @@
 # CI/CD Frontend
 I am setting up my #Cloudresume CI/CD frontend with the help of the below `action`.
-This action automates the upload of front end files to my S3 bucket. Please visit my https://www.komlalebu.com for more information.
+This action automates the upload of front end files to my S3 bucket. Please visit www.komlalebu.com for more information.
 
 # Action
 Uploads the website source code to my S3 bucket and also invalidates the Cloudfront cache after upload.
