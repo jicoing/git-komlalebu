@@ -1,3 +1,4 @@
+![Alt Text](https://s3.amazonaws.com/blog.komlalebu.com/hilltop.PNG)
 # CI/CD Frontend
 I am setting up my #Cloudresume CI/CD frontend with the help of the below `action`.
 This action automates the upload of front end files to my S3 bucket. Please visit [bio](http://blog.komlalebu.com/) for more information.
